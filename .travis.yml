@@ -6,8 +6,8 @@ branches:
 cache:
     directories:
         - $HOME/.cache/pip
-services:
-    - postgresql
+addons:
+    postgresql: "9.4"
 env:
     matrix:
         - TOXENV=py27
