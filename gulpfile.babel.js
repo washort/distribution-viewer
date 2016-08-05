@@ -54,7 +54,7 @@ gulp.task('watch', ['build'], () => {
 
 // Fake API
 gulp.task('serve:api', done => {
-  cp.exec('json-server --watch db.json --port 3009', {stdio: 'inherit'})
+  cp.exec('node_modules/.bin/json-server --watch db.json --port 3009', {stdio: 'inherit'})
     .on('close', done);
 });
 
