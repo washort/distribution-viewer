@@ -1,20 +1,16 @@
 import React from 'react';
-import ExampleChartContainer from '../containers/example-chart-container';
+//import MG from 'metrics-graphics';
 
-export default function ChartList(props) {
-  var charts = [];
+import ChartContainer from '../containers/chart-container';
 
-  for (var i = 0; i < props.numCharts; i++) {
-    charts.push(<ExampleChartContainer key={i} width={350} height={250} link={true} />);
-  }
-
+export default function(props) {
   return (
     <section className="chart-list">
-      {charts}
+      {props.items.map(chart => {
+        return (
+          <ChartContainer key={chart.slug} width={350} height={250} link={true} chartName={chart.name} />
+        );
+      })}
     </section>
   );
-}
-
-ChartList.propTypes = {
-  numCharts: React.PropTypes.number.isRequired,
 }
