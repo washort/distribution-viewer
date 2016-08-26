@@ -6,7 +6,7 @@ from .api.views import distributions, metrics
 
 
 urlpatterns = [
-    url(r'^distributions/(?P<metric>[A-Za-z0-9]+)/$', distributions,
+    url(r'^distributions/(?P<metric>[-\w]+)/$', distributions,
         name='distributions'),
     url(r'^metrics/$', metrics, name='metrics'),
     url(r'^admin/', include(admin.site.urls)),

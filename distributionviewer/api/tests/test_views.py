@@ -11,7 +11,7 @@ class TestDistribution(TestCase):
         cat_metric = Metric.objects.create(name='architecture',
                                            description='architecture descr',
                                            metadata={})
-        log_metric = Metric.objects.create(name='searchesPerActiveDay',
+        log_metric = Metric.objects.create(name='searches-per-active-day',
                                            description='searches descr',
                                            metadata={})
 
@@ -55,11 +55,11 @@ class TestDistribution(TestCase):
             u'type': u'category',
             u'description': u'architecture descr'
         }
-        url = reverse('distributions', args=['searchesPerActiveDay'])
+        url = reverse('distributions', args=['searches-per-active-day'])
         response = self.client.get(url)
         expected = {
             u'numObs': 4,
-            u'metric': u'searchesPerActiveDay',
+            u'metric': u'searches-per-active-day',
             u'points': [
                 {u'p': 0.1, u'c': 0.1, u'b': u'0.0'},
                 {u'p': 0.4, u'c': 0.5, u'b': u'1.0'},
