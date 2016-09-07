@@ -13,7 +13,7 @@ Follow these steps to install distribution-viewer locally:
     * virtualenv
 2. `git clone https://github.com/mozilla/distribution-viewer.git`
 3. `cd distribution-viewer`
-4. `echo DEBUG=True >> .env`
+4. `cp .env.default .env`
 5. `virtualenv env`
 6. `source env/bin/activate`
 7. `pip install -r requirements.txt`

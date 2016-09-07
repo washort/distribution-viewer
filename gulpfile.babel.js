@@ -57,7 +57,7 @@ gulp.task('build:css', () => {
 });
 
 gulp.task('watch', ['build'], () => {
-  gulp.watch([path.resolve(paths.js, '**/*.js'), '!' + path.resolve(paths.js, 'bundle.js')], ['build:js']);
+  gulp.watch([path.resolve(paths.js, '**/*.js'), '.env', '!' + path.resolve(paths.js, 'bundle.js')], ['build:js']);
   gulp.watch(bundles.css.main, ['build:css']);
 });
 
