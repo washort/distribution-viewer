@@ -1,11 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
-
-var environmentVariables = new webpack.DefinePlugin({
-  'process.env': {
-    'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-  }
-});
+import dotenvPlugin from 'webpack-dotenv-plugin';
 
 module.exports = {
   entry: './distributionviewer/core/static/js/app/app.js',
@@ -14,7 +9,11 @@ module.exports = {
     sourceMapFilename: './distributionviewer/core/static/js/bundle.map'
   },
   devtool: '#source-map',
-  plugins: [environmentVariables],
+  plugins: [
+    new dotenvPlugin({
+      path: '.env'
+    })
+  ],
   module: {
     loaders: [
       {
