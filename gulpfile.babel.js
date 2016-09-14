@@ -27,6 +27,7 @@ const bundles = {
     main: [
       path.resolve(paths.css, '**/*.styl'),
       path.resolve(paths.root, 'node_modules/metrics-graphics/dist/metricsgraphics.css'),
+      path.resolve(paths.root, 'node_modules/react-ios-switch/build/bundle.css'),
     ],
   },
 };
