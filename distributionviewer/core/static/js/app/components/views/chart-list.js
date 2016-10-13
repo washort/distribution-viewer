@@ -6,16 +6,12 @@ import ChartContainer from '../containers/chart-container';
 export default function(props) {
   return (
     <section className="chart-list">
-      {props.metrics.map(metric => {
+      {props.metadata.map(metricMeta => {
         return (
           <ChartContainer
-            key={metric.id}
+            key={metricMeta.id}
 
-            id={metric.id}
-            metric={metric.metric}
-            points={metric.points}
-            type={metric.type}
-
+            metricId={metricMeta.id}
             isDetail={false}
             showOutliers={false}
           />
