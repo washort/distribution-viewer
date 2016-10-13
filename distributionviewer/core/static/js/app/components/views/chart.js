@@ -9,8 +9,6 @@ export default class extends React.Component {
   constructor(props) {
     super(props);
 
-    this.chartLoaded = false;
-
     // Number of x-axis ticks on the chart list page.
     this.numXTicksSmall = 4;
 
@@ -19,57 +17,54 @@ export default class extends React.Component {
   }
 
   componentDidMount() {
-    // On the chart detail page, points are loaded after the component mounts
-    if (this.props.points) {
-      this.loadChart();
+    if (!this.props.isFetching) {
+      this.insertOrUpdateChart();
     }
   }
 
-  componentWillUpdate(nextProps) {
-    // Load the chart if it can be loaded and hasn't been already. Otherwise,
-    // it just needs to be updated.
-    if (!this.chartLoaded && nextProps.points) {
-      this.loadChart(nextProps);
-    } else if (this.chartLoaded) {
+  componentDidUpdate() {
+    if (!this.props.isFetching) {
       this.insertOrUpdateChart();
     }
   }
 
   render() {
-    const chart = (
-      <div className={`chart is-fetching chart-${this.props.id}`}>
-        <Fetching />
-        <table className="chart-rollover-table">
-          <tbody>
-            <tr>
-              <th>x</th>
-              <td className="value-x" />
-            </tr>
-            <tr>
-              <th>y</th>
-              <td className="value-y" />
-            </tr>
-            <tr>
-              <th>proportion</th>
-              <td className="value-p" />
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    );
+    let chart;
+
+    if (this.props.isFetching) {
+      chart = (
+        <div className={`chart is-fetching chart-${this.props.metricId}`}>
+          <Fetching />
+        </div>
+      );
+    } else {
+      chart = (
+        <div className={`chart chart-${this.props.metricId}`}>
+          <table className="chart-rollover-table">
+            <tbody>
+              <tr>
+                <th>x</th>
+                <td className="value-x" />
+              </tr>
+              <tr>
+                <th>y</th>
+                <td className="value-y" />
+              </tr>
+              <tr>
+                <th>proportion</th>
+                <td className="value-p" />
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      );
+    }
 
     if (!this.props.isDetail) {
-      return <Link className="chart-link" to={`/chart/${this.props.id}/`}>{chart}</Link>;
+      return <Link className="chart-link" to={`/chart/${this.props.metricId}/`}>{chart}</Link>;
     } else {
       return chart;
     }
-  }
-
-  loadChart(props = this.props) {
-    this.pointsMeta = this.buildPointsMeta(props.points);
-    this.insertOrUpdateChart();
-    document.querySelector(`.chart-${props.id}`).classList.remove('is-fetching');
-    this.chartLoaded = true;
   }
 
   buildPointsMeta(dataPoints) {
@@ -96,7 +91,12 @@ export default class extends React.Component {
 
   insertOrUpdateChart() {
     const refLabels = {};
-    const infoElm = document.querySelector(`.chart-${this.props.id} .chart-rollover-table`);
+    const infoElm = document.querySelector(`.chart-${this.props.metricId} .chart-rollover-table`);
+
+    if (!this.pointsMeta) {
+      this.pointsMeta = this.buildPointsMeta(this.props.points);
+    }
+
     const pointsMetaLength = this.pointsMeta.length;
 
     this.pointsMeta.map(chartItem => {
@@ -105,7 +105,7 @@ export default class extends React.Component {
 
     /* eslint-disable camelcase */
     const graphOptions = {
-      target: '.chart-' + this.props.id,
+      target: '.chart-' + this.props.metricId,
 
       // Data
       data: this.pointsMeta,
@@ -114,7 +114,7 @@ export default class extends React.Component {
       show_rollover_text: false,
 
       // General display
-      title: this.props.metric,
+      title: this.props.name,
       full_width: true,
       area: false,
       missing_is_hidden: true,
