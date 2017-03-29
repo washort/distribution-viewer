@@ -1,5 +1,7 @@
 import React from 'react';
 
+import DescriptionContainer from '../containers/description-container';
+
 
 export default function(props) {
   let maybeDataFieldset, maybePopulationsFieldset, maybeChartsFieldset;
@@ -77,7 +79,9 @@ export default function(props) {
           return (
             <label key={id}>
               <input type="checkbox" className="cb-metrics" defaultChecked={checkedByDefault} name="metrics" value={id} />
-              {metricMeta.name}{metricMeta.description ? `: ${metricMeta.description}` : ''}
+              {metricMeta.name}
+              {metricMeta.description ? ': ' : ''}
+              {metricMeta.description ? <DescriptionContainer rawDescription={metricMeta.description} asTooltip={false} keepLinebreaks={false} /> : ''}
             </label>
           );
         })}

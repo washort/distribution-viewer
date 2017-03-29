@@ -36,7 +36,7 @@ export default function(props) {
       showOutliers = true;
     }
 
-    const tooltip = <DescriptionContainer rawDescription={metricMeta.description} asTooltip={true} />;
+    const tooltip = <DescriptionContainer rawDescription={metricMeta.description} asTooltip={true} keepLinebreaks={true} />;
     chartLinks.push(
       <Link key={id} className="chart-link" to={`/chart/${id}/?pop=${props.whitelistedPopulations.join(',')}&showOutliers=${props.showOutliers}`}>
         <div>
