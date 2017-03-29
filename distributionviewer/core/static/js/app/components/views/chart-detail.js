@@ -42,6 +42,7 @@ export default function(props) {
       <DescriptionContainer
         rawDescription={props.rawDescription}
         asTooltip={false}
+        keepLinebreaks={true}
       />
     </div>
   );
