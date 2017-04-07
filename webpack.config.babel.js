@@ -1,5 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
+import CoreJsPlugin from 'core-js-webpack-plugin';
 
 const plugins = [
   new webpack.DefinePlugin({
@@ -7,7 +8,12 @@ const plugins = [
       'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
       'TRACKING_ID': JSON.stringify(process.env.TRACKING_ID),
     }
-  })
+  }),
+
+  // Polyfills
+  new CoreJsPlugin({
+    modules: ['es6.array.from', 'es6.object.assign'],
+  }),
 ];
 
 // Debugging is a bit tricker when the bundle is compressed, so only compress it
