@@ -10,7 +10,7 @@ mock==2.0.0
 psycopg2==2.7.1
 pyasn1==0.2.3
 pyasn1-modules==0.0.8
-PyOpenSSL==16.2.0
+PyOpenSSL==17.2.0
 python-decouple==3.0
 raven==6.0.0
 requests==2.13.0
