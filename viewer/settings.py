@@ -48,7 +48,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'viewer.middleware.CORSMiddleware',
 ]
 
 ROOT_URLCONF = 'viewer.urls'
@@ -105,6 +104,7 @@ USE_TZ = True
 SECURE_SSL_REDIRECT = config('SSL_REDIRECT', default=False, cast=bool)
 SECURE_HSTS_SECONDS = (60 * 60 * 24 * 365)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
