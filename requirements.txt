@@ -13,7 +13,7 @@ pyasn1-modules==0.0.9
 PyOpenSSL==17.2.0
 python-decouple==3.0
 raven==6.1.0
-requests==2.18.2
+requests==2.18.4
 rsa==3.4.2
 simplejson==3.11.1
 six==1.10.0
