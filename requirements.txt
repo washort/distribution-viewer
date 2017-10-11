@@ -11,7 +11,7 @@ psycopg2==2.7.3
 pyasn1==0.3.1
 pyasn1-modules==0.0.9
 PyOpenSSL==17.2.0
-python-decouple==3.0
+python-decouple==3.1
 raven==6.1.0
 requests==2.18.2
 rsa==3.4.2
