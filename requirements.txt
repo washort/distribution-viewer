@@ -2,7 +2,7 @@
 Django==1.11.10  # pyup: >=1.11,<2.0
 PyOpenSSL==17.5.0
 contextlib2==0.5.5
-dj-database-url==0.4.2
+dj-database-url==0.5.0
 djangorestframework==3.7.7
 dockerflow==2018.2.1
 google-api-python-client==1.6.5
